@@ -12,22 +12,41 @@ class Arbol{
         this.raiz=null;
         this.lista="";
     }
-    /* TEST */
-    inOrder(){
+    preOrder(){
+        this.lista= ""
         if(this.raiz==null){
             console.log("");
         }else{
-            this.inOrderRecur(this.raiz)
+            this.preOrderRecur(this.raiz)
+        }
+        return this.lista
+    }
+    preOrderRecur(nodoX){
+        this.lista+=`${nodoX.simbolo}`
+        if(nodoX.hI!=null){
+            this.preOrderRecur(nodoX.hI);
+        }
+        if(nodoX.hD!=null){
+            this.preOrderRecur(nodoX.hD);
         }
     }
-    inOrderRecur(nodoX){
+    postOrder(){
+        this.lista= ""
+        if(this.raiz==null){
+            console.log("");
+        }else{
+            this.postOrderRecur(this.raiz)
+        }
+        return this.lista
+    }
+    postOrderRecur(nodoX){
         if(nodoX.hI!=null){
-            this.inOrderRecur(nodoX.hI);
+            this.postOrderRecur(nodoX.hI);
         }
-        console.log(nodoX.simbolo)
         if(nodoX.hD!=null){
-            this.inOrderRecur(nodoX.hD);
+            this.postOrderRecur(nodoX.hD);
         }
+        this.lista+=`${nodoX.simbolo}`
     }
 }
 class Lista{
@@ -45,17 +64,6 @@ class Lista{
             this.ultimo.sig=nuevo;
             this.ultimo=nuevo
         }
-    }
-    lista(){
-        let aux = this.primero
-        let lista  = ""
-        while(aux){
-            if(aux.hI!=null&&aux.hD!=null){
-                lista += `SIMBOLO:${aux.simbolo}  HI:${aux.hI.simbolo}  HD: ${aux.hD.simbolo}\n`
-            }
-            aux=aux.sig;
-        }
-        return lista
     }
     crearArbol(){
         let aux = this.primero
@@ -107,6 +115,7 @@ let convertir = (exp)=>{
     }
 }
 convertir(expresion)
-arbol.raiz = lista.crearArbol();
-console.log(lista.lista())
-arbol.inOrder()
+arbol.raiz=lista.crearArbol()
+
+console.log(arbol.preOrder())
+console.log(arbol.postOrder())
