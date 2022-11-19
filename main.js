@@ -12,6 +12,23 @@ class Arbol{
         this.raiz=null;
         this.lista="";
     }
+    /* TEST */
+    inOrder(){
+        if(this.raiz==null){
+            console.log("");
+        }else{
+            this.inOrderRecur(this.raiz)
+        }
+    }
+    inOrderRecur(nodoX){
+        if(nodoX.hI!=null){
+            this.inOrderRecur(nodoX.hI);
+        }
+        console.log(nodoX.simbolo)
+        if(nodoX.hD!=null){
+            this.inOrderRecur(nodoX.hD);
+        }
+    }
 }
 class Lista{
     constructor(){
@@ -81,7 +98,8 @@ class Lista{
 }
 
 let expresion = "1+2*5-3/7"
-let lista=new Lista()
+let arbol = new Arbol();
+let lista=new Lista();
 let convertir = (exp)=>{
     for (let i=0; i<exp.length; i++) {
         let nodo = new Nodo(exp[i])
@@ -89,5 +107,6 @@ let convertir = (exp)=>{
     }
 }
 convertir(expresion)
-lista.crearArbol();
+arbol.raiz = lista.crearArbol();
 console.log(lista.lista())
+arbol.inOrder()
