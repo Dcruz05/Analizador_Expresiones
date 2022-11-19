@@ -33,10 +33,50 @@ class Lista{
         let aux = this.primero
         let lista  = ""
         while(aux){
-            lista += `${aux.simbolo}`
+            if(aux.hI!=null&&aux.hD!=null){
+                lista += `SIMBOLO:${aux.simbolo}  HI:${aux.hI.simbolo}  HD: ${aux.hD.simbolo}\n`
+            }
             aux=aux.sig;
         }
         return lista
+    }
+    crearArbol(){
+        let aux = this.primero
+        while(aux){
+            if(aux!=null&&(aux.simbolo=="*"||aux.simbolo=="/")){
+                aux.hI=aux.ant
+                aux.hD=aux.sig
+                aux.sig=aux.sig.sig
+                aux.ant=aux.ant.ant
+                if(aux.ant!=null){
+                    aux.ant.sig=aux
+                }
+                if(aux.sig!=null){
+                    aux.sig.ant=aux
+                }
+            }
+            aux=aux.sig
+        }
+        aux=this.primero
+        while(aux){
+            if(aux.simbolo=="+"||aux.simbolo=="-"){
+                aux.hI=aux.ant
+                aux.hD=aux.sig
+                aux.sig=aux.sig.sig
+                aux.ant=aux.ant.ant
+                if(aux.ant!=null){
+                    aux.ant.sig=aux
+                }
+                if(aux.sig!=null){
+                    aux.sig.ant=aux
+                }
+                
+            }
+            if(aux.sig==null){
+                return aux
+            }
+            aux=aux.sig;
+        }
     }
 }
 
@@ -49,4 +89,5 @@ let convertir = (exp)=>{
     }
 }
 convertir(expresion)
+lista.crearArbol();
 console.log(lista.lista())
