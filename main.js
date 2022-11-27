@@ -105,17 +105,74 @@ class Lista{
     }
 }
 
-let expresion = "1+2*5-3/7"
-let arbol = new Arbol();
-let lista=new Lista();
 let convertir = (exp)=>{
     for (let i=0; i<exp.length; i++) {
         let nodo = new Nodo(exp[i])
         lista.agregar(nodo)
     }
 }
+
+let calcular= (string)=>{
+    let vector= Array.from(string)
+    let numeros = [];
+    if(vector[0]=="+"||vector[0]=="-"||vector[0]=="*"||vector[0]=="/"){
+        while(vector.length != 0) {
+            let temp = vector.pop()
+            if(temp!="+"&&temp!="-"&&temp!="*"&&temp!="/"){
+                numeros.push(parseInt(temp))
+            }else{
+                let nums = [numeros.pop(),numeros.pop()]
+                switch(temp){
+                    case "+":
+                        numeros.push(nums[0]+nums[1])
+                        break
+                    case "-":
+                        numeros.push(nums[0]-nums[1])
+                        break
+                    case "*":
+                        numeros.push(nums[0]*nums[1])
+                        break
+                    case "/":
+                        numeros.push(nums[0]/nums[1])
+                        break
+                }
+            }
+        }
+    }else{
+        while(vector.length != 0) {
+            let temp = vector.shift() 
+            if(temp!="+"&&temp!="-"&&temp!="*"&&temp!="/"){
+                numeros.push(parseInt(temp))
+            }else{
+                let nums = [numeros.pop(),numeros.pop()]
+                switch(temp){
+                    case "+":
+                        numeros.push(nums[1]+nums[0])
+                        break
+                    case "-":
+                        numeros.push(nums[1]-nums[0])
+                        break
+                    case "*":
+                        numeros.push(nums[1]*nums[0])
+                        break
+                    case "/":
+                        numeros.push(nums[1]/nums[0])
+                        break
+                }
+            }
+        }
+    }
+    return numeros[0]
+}
+
+let expresion = "3-4*2-6*3/9+6"
+let arbol = new Arbol();
+let lista=new Lista();
 convertir(expresion)
 arbol.raiz=lista.crearArbol()
-
-console.log(arbol.preOrder())
-console.log(arbol.postOrder())
+let preOrder =arbol.preOrder()
+let postOrder =arbol.postOrder()
+console.log(preOrder)
+console.log(postOrder)
+console.log("RESULTADO(PRE-ORDER): " + calcular(preOrder))
+console.log("RESULTADO(POST-ORDER): " + calcular(postOrder))
