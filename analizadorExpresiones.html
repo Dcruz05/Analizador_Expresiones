@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador</title>
+    <script src="./main.js"></script>
+</head>
+<body>
+    <center>
+        <h1>Analizador de expresiones</h1>
+        <container>
+            <div>
+                <label for="Expresion">Expresion</label><br>
+                <input type="text" id="expresion" placeholder="Ingrese una expresion" required>
+                <button id="btnanalizar">analizar</button>
+            </div>
+            <div id="resultado">
+
+            </div>
+        </container>
+    </center>
+    
+    <script>
+        const btnanalizar = document.getElementById("btnanalizar");
+        const divResult = document.getElementById("resultado");
+        btnanalizar.addEventListener("click",()=>{
+            let expresion = document.getElementById("expresion").value;
+            let arbol = new Arbol();
+            let lista = new Lista();
+            convertListD(expresion,lista)
+            arbol.raiz=lista.crearArbol()
+            let preOrder =arbol.preOrder()
+            let postOrder =arbol.postOrder()
+            divResult.innerHTML=`<br><h3>Recorrido preOrder</h3> ${preOrder}<br>Resultado = ${analizar(preOrder)}<h3>Recorrido postOrder</h3>${postOrder}<br>Resultado = ${analizar(postOrder)}`       
+        })
+    </script>
+</body>
+<center>
+    <br><br><footer>Derechos reservados &copy; David Cruz 2022 </footer>
+</center>
+</html>

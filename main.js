@@ -105,14 +105,14 @@ class Lista{
     }
 }
 
-let convertir = (exp)=>{
+let convertListD = (exp,list)=>{
     for (let i=0; i<exp.length; i++) {
         let nodo = new Nodo(exp[i])
-        lista.agregar(nodo)
+        list.agregar(nodo)
     }
 }
 
-let calcular= (string)=>{
+let analizar= (string)=>{
     let vector= Array.from(string)
     let numeros = [];
     if(vector[0]=="+"||vector[0]=="-"||vector[0]=="*"||vector[0]=="/"){
@@ -164,15 +164,16 @@ let calcular= (string)=>{
     }
     return numeros[0]
 }
-
+/* pruebas node
 let expresion = "3-4*2-6*3/9+6"
 let arbol = new Arbol();
 let lista=new Lista();
-convertir(expresion)
+convertListD(expresion,lista)
 arbol.raiz=lista.crearArbol()
 let preOrder =arbol.preOrder()
 let postOrder =arbol.postOrder()
 console.log(preOrder)
 console.log(postOrder)
-console.log("RESULTADO(PRE-ORDER): " + calcular(preOrder))
-console.log("RESULTADO(POST-ORDER): " + calcular(postOrder))
+console.log("RESULTADO(PRE-ORDER): " + analizar(preOrder))
+console.log("RESULTADO(POST-ORDER): " + analizar(postOrder))
+*/
