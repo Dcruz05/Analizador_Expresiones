@@ -102,6 +102,7 @@ class Lista{
             }
             aux=aux.sig;
         }
+        
     }
 }
 

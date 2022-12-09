@@ -1,6 +1,25 @@
-let string = "+--3*42/*6396"
+let string = "3+1(5+2*4/3)"
 let ar= Array.from(string)
-console.log(ar)
+//console.log(ar)
+let i = 0
+while(i!=ar.length){
+    if(ar[i]=='('){
+        let j = i+1; 
+        while(ar[j]!=')'){
+            console.log(ar[j])
+            j++
+        }
+    }
+    i++
+}
+
+
+
+
+
+
+
+/*
 let numeros = [];
 while(ar.length != 0) {
     let temp = ar.pop()
@@ -27,7 +46,7 @@ while(ar.length != 0) {
 }
 console.log(numeros)
 
-/* POST ORDEN */
+/* POST ORDEN *//*
 let string2 = "342*-63*9/-6+"
 let vector= Array.from(string2)
 console.log(vector)
@@ -57,3 +76,5 @@ while(vector.length != 0) {
     }
 }
 console.log(numeros2)
+
+*/
